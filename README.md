@@ -25,9 +25,9 @@ Example:
 
   Inception(2010)
 
-  <img src="http://t1.daumcdn.net/movie/7b4dd01f05e74ec79136e419f674196d1578962830150" alt="Movie" style="zoom: 10%;" /> 
+  <img src="http://t1.daumcdn.net/movie/7b4dd01f05e74ec79136e419f674196d1578962830150" alt="Movie" width="30%" height="30%" /> 
 
 - Output:
 
-  ![image-20220516112347040](C:\Users\wordn\AppData\Roaming\Typora\typora-user-images\image-20220516112347040.png) 
+  ![image-20220516112347040](./images/output.png) 
 
