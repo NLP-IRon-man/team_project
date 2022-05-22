@@ -59,7 +59,7 @@ def download_txt(movie_name, movie_sciprt_url, genre):
     count = 0
 
     print(movie_name)
-    #script_file = open(complete_name,"w")
+    script_file = open(complete_name,"w")
 
     charactor = ''
     script = ''
@@ -92,7 +92,7 @@ def download_txt(movie_name, movie_sciprt_url, genre):
           # 정보 저장
           if(count == 1):
              charactor = element.get_text()
-             charactor = charactor.strip().replace(" (CONT'D)", '').replace(" (CONT D)",'')
+             charactor = charactor.strip().replace(" (CONT'D)", '').replace(" (CONT D)",'').replace("(CONT'D)", '')
              #print(charactor)
              count = 2
             
@@ -103,25 +103,22 @@ def download_txt(movie_name, movie_sciprt_url, genre):
              script = ' '.join(script.replace('\r','').replace('\n','').strip().split())
              #print(script)
              print(charactor + " | " + script)
+             try:
+                script_file.write(charactor + " | " + script + "\n")
+             except:
+                 print('error')
+                 print(complete_name)
+                 os.remove(complete_name)
              count = 0
+    script_file.close()  
 
-
-    #print(script_split_by_btag)
-
-   #  try:
-   #      script_file.write(soup.fid('pre').getText())
-   #      #this part have to -> <b> get character name and next script name
-   #      if(os.path.getsize(complete_name) == 0):
-   #          os.remove(complete_name)
-   #  except:
-   #      print('error')
-   #      print(complete_name)
-   #      os.remove(complete_name)
-   #  script_file.close()
 
 
 def main():
-   #change movie name
+   # 영화 제목을 리스트 형식으로 넣어주세요
+   # 현재 romance, crime, action 장르가 코드에 포함되어있는데,
+   # 장르 추가를 원하시면 맨 위 코드에서 장르에 따른 폴더 생성 코드를 따로 만들어야합니다.
+   # ex) os.makedirs(os.path.dirname(os.path.abspath(__file__)) +'/movie_scripts/{원하는 장르}_movies')
    make_script_url(["Black-Panther"], "action")
 
 
