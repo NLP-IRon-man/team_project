@@ -5,25 +5,25 @@ movies = os.listdir(scripts_path)
 for movies in movies:
     movie_path = './scripts/'+movies
     f = open(movie_path,'r')
-    scripts_line = [] #한 등장인물의 대사마다 쪼개서 배열에 저장하기 위한 배열
+    scripts_line = [] # 한 등장인물의 대사마다 쪼개서 배열에 저장하기 위한 배열
     while True:
         line = f.readline()
         scripts_line.append(line)
         if not line: break
-    scripts_by_role = {} #등장인물별 대사를 저장하기 위한 사전
-    role_appearance = {} #등장한 횟수를 측정하기 위한 사전. 캐릭터:등장횟수
+    scripts_by_role = {} # 등장인물별 대사를 저장하기 위한 사전
+    role_appearance = {} # 등장한 횟수를 측정하기 위한 사전. 캐릭터 : 등장횟수
     for item in scripts_line:
         split_role_txt = item.split(' | ') # role|txt 이므로 split
-        if len(split_role_txt)<2: ##파싱이 잘못된 것이겠지만 role |NULL 이런 경우가 존재해서 오류가 나서 그 부분 예외처리
+        if len(split_role_txt)<2: ## 파싱이 잘못된 것이겠지만 role |NULL 이런 경우가 존재해서 오류가 나서 그 부분 예외처리
             continue
         role = split_role_txt[0]
-        if role =='': #''는 어떻게 걸러낼 수가 없어서 임의로 하드코딩
+        if role =='': # ''는 어떻게 걸러낼 수가 없어서 임의로 하드코딩
             continue
         txt = split_role_txt[1]
 
         if role in scripts_by_role: 
-            scripts_by_role[role] += txt #역할별 대사 계속 append
-            role_appearance[role] += 1 #등장 횟수 카운트
+            scripts_by_role[role] += txt # 역할별 대사 계속 append
+            role_appearance[role] += 1 # 등장 횟수 카운트
         else:
             scripts_by_role[role] = txt
             role_appearance[role] = 1
