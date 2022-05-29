@@ -81,4 +81,4 @@ for movies in movies:
     data = DataFrame(raw_data, index = ['txt'])
     data.to_csv(path)
     print('.',end='')
-    
+

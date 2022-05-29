@@ -7,6 +7,7 @@ from typing import List, Dict
 from pandas import DataFrame
 import pandas as pd
 import os
+import copy
 
 scripts_path = "./scripts"
 scripts_name = os.listdir(scripts_path)
@@ -51,6 +52,19 @@ def process_data(movie_data_dict: Dict, fn):
             data[character] = fn(line)
 
 
+def save_data(movie_data_dict: Dict):
+    copied_data_dict = copy.deepcopy(movie_data_dict)
+    for name, data in copied_data_dict.items():
+        for character, token_list in data.items():
+            data[character] = " ".join(token_list)
+    for name, data in copied_data_dict.items():
+        csv_path = f"./csv/{name}_preprocess.csv"
+        DataFrame.from_dict([data]).to_csv(csv_path)
+
+
+def read_data(csv_path:str)->Dict:
+    return pd.read_csv(csv_path, index_col = 0).to_dict()
+
 process_data(movie_data_dict, tokenize)
 print("\n**After tokenizing")
 print_movie_data(movie_data_dict)
@@ -62,3 +76,6 @@ print_movie_data(movie_data_dict)
 process_data(movie_data_dict, remove_stop_words)
 print("\n**After removing stop words")
 print_movie_data(movie_data_dict)
+save_data(movie_data_dict)
+
+dict = read_data("./csv/Up_preprocess.csv")
