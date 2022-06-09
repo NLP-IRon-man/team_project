@@ -5,16 +5,9 @@ import requests
 from bs4 import BeautifulSoup
 import urllib3
 
-url_crime = 'https://imsdb.com/genre/Crime'
-url_romance = 'https://imsdb.com/genre/Romance'
-
 try:
     os.makedirs(os.path.dirname(os.path.abspath(__file__)) +
-                '/movie_scripts/crime_movies')
-    os.makedirs(os.path.dirname(os.path.abspath(__file__)) +
-                '/movie_scripts/romance_movies')
-    os.makedirs(os.path.dirname(os.path.abspath(__file__)) +
-                '/movie_scripts/action_movies')
+                '/scripts')
 except:
     print('Already exists folder')
 
@@ -30,29 +23,31 @@ def get_movie_name(url):
 
     return convert_movie_name(movie_name_list)
 
+# ismdb에서는 영화 제목이 스페이스바 대신 -를 사용
+# 이를 변환시켜주는 코드
+# 현재 사용할 필요 x
+def convert_movie_name(movie_name):
 
-def convert_movie_name(movie_name_list):
+    movie_name = movie_name.replace(" ", "-")
 
-    for i in range(len(movie_name_list)):
-        movie_name_list[i] = movie_name_list[i].replace(" ", "-")
+    return movie_name
 
-    return movie_name_list
-
-
-def make_script_url(movie_name_list, genre):
+# 자동으로 url 생성 및 다운로드 진행
+# 메인에서처럼 사용하면 됩니다.
+def make_script_url(movie_name):
+    movie_name = movie_name.replace(" ", "-")
     url_script = 'https://imsdb.com/scripts/'
 
-    for movie_name in movie_name_list:
-        download_txt(movie_name, url_script + movie_name + '.html', genre)
+    download_txt(movie_name, url_script + movie_name + '.html')
 
 
-def download_txt(movie_name, movie_sciprt_url, genre):
+def download_txt(movie_name, movie_sciprt_url):
     http = urllib3.PoolManager()
     response = http.request('GET', movie_sciprt_url)
     soup = BeautifulSoup(response.data, "html.parser")
 
     save_path = os.path.dirname(os.path.abspath(
-        __file__)) + '/movie_scripts/'+genre+'_movies'
+        __file__)) + '/scripts'
     file_name = movie_name+'.txt'
     complete_name = os.path.join(save_path, file_name)
 
@@ -115,11 +110,10 @@ def download_txt(movie_name, movie_sciprt_url, genre):
 
 
 def main():
-   # 영화 제목을 리스트 형식으로 넣어주세요
-   # 현재 romance, crime, action 장르가 코드에 포함되어있는데,
-   # 장르 추가를 원하시면 맨 위 코드에서 장르에 따른 폴더 생성 코드를 따로 만들어야합니다.
-   # ex) os.makedirs(os.path.dirname(os.path.abspath(__file__)) +'/movie_scripts/{원하는 장르}_movies')
-   make_script_url(["Black-Panther"], "action")
+   # 영화 제목을 스트링으로 넣어주세요.
+   # 현재 장르 필요 없어져서 장르 파라미터 제거
+   # 영화 제목만 넣어주심 됩니다.
+   make_script_url("Lost in Translation")
 
 
 if __name__ == "__main__":
