@@ -11,7 +11,7 @@ import copy
 from collections import OrderedDict
 import matplotlib.pyplot as plt
 import numpy as np
-
+import unicodedata
 
 def convert_dict_to_list(dictionary: Dict) -> List:
     return [data for _, data in sorted(
@@ -114,6 +114,9 @@ print("processing", end="")
 for movie in movies:
     movie_name = movie
     for role in graph_data_dict[movie_name]:
+
+
+
         character_name = role
         period_name_list = [period_name.replace("_", " ").replace(
             "p", "P") for period_name in list(emotion_data_dict[movie_name][character_name].keys())]
@@ -127,7 +130,22 @@ for movie in movies:
                 temp_sum+=graph_data_dict[movie_name][character_name][emotion][i]
             for emotion in emotion_name_list:
                 percent_dict[emotion].append((graph_data_dict[movie_name][character_name][emotion][i]/temp_sum)*100)
-        #graph_data = {}
+        
+        ##most emotion
+        most_emotions = []
+        most_values = []
+        emoji_dict = {'happy': "😀",'fear': "😱",'disgust': "🤮",'surprise': "😲",'neutral': "😐",'anger': "😡",'sad': "😭"}
+        for i in range(len(period_name_list)):
+            max_emotion = ''
+            temp = 0
+            for emotion in emotion_name_list:
+                if percent_dict[emotion][i]>=temp:
+                    max_emotion = emotion
+                    temp = percent_dict[emotion][i]
+            most_emotions.append(max_emotion)
+            most_values.append(temp)
+        
+
         period_axis = np.arange(len(period_name_list))
         plt.figure(figsize=(8, 8))
         plt.title(f"{movie_name} - {character_name}")
@@ -137,6 +155,9 @@ for movie in movies:
                 period_axis, percent_dict[emotion_name], label=emotion_name)
         plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
         plt.tight_layout()
+        for i in range(len(period_name_list)):
+            plt.text(i-0.5,most_values[i],most_emotions[i]+emoji_dict[most_emotions[i]], fontsize=12, color='black', weight = 'bold')
+
         file_name = movie_name + "_" + role+".png"
         plt.savefig('plot_image/'+file_name)
 #plt.show()

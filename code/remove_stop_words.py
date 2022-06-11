@@ -10,6 +10,7 @@ import os
 import copy
 
 csv_dir_path = "./code/csv"
+#csv_dir_path = "csv" ##For ByungJun's pc path
 csv_file_name_list = os.listdir(csv_dir_path)
 movie_data_dict = {}
 for csv_file_name in csv_file_name_list:
