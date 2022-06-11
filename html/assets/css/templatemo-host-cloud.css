@@ -373,7 +373,7 @@ header {
 	display: inline-block;
 }
 .banner #search-section {
-	position: relative;
+	position: absolute;
 }
 .banner #search-section input.searchText {
 	float: left;
@@ -390,9 +390,9 @@ header {
 	margin-bottom: 30px;
 }
 .banner #search-section input.main-button {
-	position: absolute;
-	top: 0;
-	right: 0;
+	position:fixed;
+	top: 385px;
+	right: 380px;
 	outline: none;
 	cursor: pointer;
 	display: inline-block;
@@ -459,7 +459,146 @@ header {
   color: #fff;
 }
 
+#search-section select{
+	top: 0;
+	right: 0;
+	outline: none;
+	cursor: pointer;
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	padding: 0px 10px;
+	border: none;
+	margin-left: 10px;
+	background-color: #005cd4;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	transition: all 0.5s;
+	margin-bottom: 30px;
+}
 
+
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.custom-select {
+	position: relative;
+	font-family: Arial;
+ }
+ 
+ .custom-select select {
+	display: none; /*hide original SELECT element:*/
+ }
+ 
+ .select-selected {
+	background-color: DodgerBlue;
+ }
+ 
+ /*style the arrow inside the select element:*/
+ .select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
+ }
+ 
+ /*point the arrow upwards when the select box is open (active):*/
+ .select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
+ }
+ 
+ /*style the items (options), including the selected item:*/
+ .select-items div,.select-selected {
+	color: #ffffff;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	user-select: none;
+ }
+ 
+ /*style items (options):*/
+ .select-items {
+	position: absolute;
+	background-color: DodgerBlue;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+ }
+ 
+ /*hide the items when the select box is closed:*/
+ .select-hide {
+	display: none;
+ }
+ 
+ .select-items div:hover, .same-as-selected {
+	background-color: rgba(0, 0, 0, 0.1);
+ }
 
 /* Trusted Style */
 .trusted-section {

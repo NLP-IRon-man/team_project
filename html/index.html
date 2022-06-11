@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/pyscript.css" />
+    <script defer src="path/to/pyscript.js"></script>
 
     <title>IRON-MAN NLP Project</title>
 
@@ -54,21 +56,6 @@ https://templatemo.com/tm-541-host-cloud
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="services.html">Our Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-          <div class="functional-buttons">
-            <ul>
-              <li><a href="#">Log in</a></li>
-              <li><a href="#">Sign Up</a></li>
             </ul>
           </div>
         </div>
@@ -84,9 +71,24 @@ https://templatemo.com/tm-541-host-cloud
             <div class="header-text caption">
               <h2>Check your Movie Emotion Graph</h2>
               <div id="search-section">
-              	<form id="suggestion_form" name="gs" method="get" action="#">
+              	<form id="suggestion_form" name="gs" method="POST" action="#">
                 <div class="searchText">
-                  <input type="text" name="q" class="searchText" placeholder="Enter your movie here..." autocomplete="on">
+                  <!--template for-loop list -->
+                  <select name="movies" class="custom-select" style="width:200px;">
+                    <option value="">Select your movie</option>
+                    <option value="batman">Batman</option>
+                    <option value="up">Up</option>
+                    <option value="spider-man">Spider Man</option>
+                    <option value="black-panther">Black Panther</option>
+                  </select>
+                  <select name="character" class="custom-select" style="width:200px;">
+                    <option value="">Select character</option>
+                    <option value="batman">Batman</option>
+                    <option value="up">Up</option>
+                    <option value="spider-man">Spider Man</option>
+                    <option value="black-panther">Black Panther</option>
+                  </select>
+                
                 </div>
                     <input type="submit" name="results" class="main-button" value="Check Now">
                  </form>
@@ -115,9 +117,11 @@ https://templatemo.com/tm-541-host-cloud
           </div>
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="service-item">
-              <i class="fa fa-database"></i>
+              <!-- <i class="fa fa-database"></i>
               <h4>10x Light Cloud</h4>
-              <p>Aenean sit amet leo vitae tellus vehicula tincidunt vel sed lorem. Nullam tincidunt commodo magna, id aliquam sapien sollicitudin id.</p>
+              <p>Aenean sit amet leo vitae tellus vehicula tincidunt vel sed lorem. Nullam tincidunt commodo magna, id aliquam sapien sollicitudin id.</p> -->
+
+              
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-xs-12">
@@ -139,188 +143,6 @@ https://templatemo.com/tm-541-host-cloud
     </div>
     <!-- Services Ends Here -->
 
-
-    <!-- Features Starts Here -->
-    <div class="features-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <span>Best Quality for you</span>
-              <h2>Cloud Features</h2>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="feature-item">
-              <div class="icon">
-                <img src="assets/images/feature-01.png" alt="">
-              </div>
-              <h4>Load Balanced</h4>
-              <p>Nulla nisl ex, vehicula in urna nec, commodo consectetur augue. Vivamus nec metus mauris. Praesent lacinia tempus urna.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="feature-item">
-              <div class="icon">
-                <img src="assets/images/feature-01.png" alt="">
-              </div>
-              <h4>99.9% Uptime Guaranteed</h4>
-              <p>Lorem ipsum dolor ame taxidermy sriracha cardigan salvia actually vice migas en pin sustainable carry scenester.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="feature-item">
-              <div class="icon">
-                <img src="assets/images/feature-01.png" alt="">
-              </div>
-              <h4>Top Reliability</h4>
-              <p>Lorem ipsum dolor ame taxidermy sriracha cardigan salvia actually vice migas en pin sustainable carry scenester.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="feature-item">
-              <div class="icon">
-                <img src="assets/images/feature-01.png" alt="">
-              </div>
-              <h4>High Security</h4>
-              <p>Lorem ipsum dolor ame taxidermy sriracha cardigan salvia actually vice migas en pin sustainable carry scenester.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="feature-item">
-              <div class="icon">
-                <img src="assets/images/feature-01.png" alt="">
-              </div>
-              <h4>Quality Hardwares</h4>
-              <p>Lorem ipsum dolor ame taxidermy sriracha cardigan salvia actually vice migas en pin sustainable carry scenester.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="feature-item">
-              <div class="icon">
-                <img src="assets/images/feature-01.png" alt="">
-              </div>
-              <h4>Network Solutions</h4>
-              <p>Lorem ipsum dolor ame taxidermy sriracha cardigan salvia actually vice migas en pin sustainable carry scenester.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Features Ends Here -->
-
-
-    <!-- Testimonials Starts Here -->
-    <div class="testimonials-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <span>Testimonials</span>
-              <h2>What they say about us</h2>
-            </div>
-          </div>
-          <div class="col-md-10 offset-md-1">
-            <div class="owl-testimonials owl-carousel">
-              <div class="testimonial-item">
-                <div class="icon">
-                  <i class="fa fa-quote-right"></i>
-                </div>
-                <p>"Ut elementum a elit sed tristique. Pellentesque sed semper erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean quam erat, rutrum ut malesuada."</p>
-                <h4>William Smith</h4>
-                <span>New Co-Founder</span>
-              </div>
-              <div class="testimonial-item">
-                <div class="icon">
-                  <i class="fa fa-quote-right"></i>
-                </div>
-                <p>"Quisque lacinia sed velit et maximus. Quisque dictum, lacus a malesuada finibus, arcu magna luctus risus, eu accumsan risus elit vitae lacus."</p>
-                <h4>Vinny Smart</h4>
-                <span>Digital Marketer</span>
-              </div>
-              <div class="testimonial-item">
-                <div class="icon">
-                  <i class="fa fa-quote-right"></i>
-                </div>
-                <p>"Vestibulum mauris ipsum, tempor tincidunt justo sit amet, bibendum tincidunt dui. Aenean molestie, odio quis viverra ultricies, leo tellus lacinia neque, sit amet maximus tortor nunc aliquet felis."</p>
-                <h4>Trevor Liam</h4>
-                <span>Technology Chef</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Testimonials Ends Here -->
-
-
-    <!-- Footer Starts Here -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="footer-item">
-              <div class="footer-heading">
-                <h2>About Us</h2>
-              </div>
-              <p>Host Cloud is provided by TemplateMo for free of charge. Anyone can download and use this CSS Bootstrap template for commercial purposes.</p>
-            </div>
-          </div>
-          
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="footer-item">
-              <div class="footer-heading">
-                <h2>Hosting Plans</h2>
-              </div>
-              <ul class="footer-list">
-                <li><a href="#">Basic Cloud 5X</a></li>
-                <li><a href="#">Cloud VPS 10X</a></li>
-                <li><a href="#">Advanced Cloud</a></li>
-                <li><a href="#">Custom Designs</a></li>
-                <li><a href="#">Special Solutions</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="footer-item">
-              <div class="footer-heading">
-                <h2>Useful Links</h2>
-              </div>
-              <ul class="footer-list">
-                <li><a href="#">Cloud Hosting Platform</a></li>
-                <li><a href="#">Light Speed Zone</a></li>
-                <li><a href="#">Content Delivery Network</a></li>
-                <li><a href="#">Customer Support</a></li>
-                <li><a href="#">Latest News</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="footer-item">
-              <div class="footer-heading">
-                <h2>More Information</h2>
-              </div>
-              <ul class="footer-list">
-                <li>Phone: <a href="#">010-020-0560</a></li>
-                <li>Email: <a href="#">mail@company.com</a></li>
-                <li>Support: <a href="#">support@company.com</a></li>
-                <li>Website: <a href="#">www.company.com</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="sub-footer">
-              <p>Copyright &copy; 2020 Cloud Hosting Company
-				- Designed by <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- Footer Ends Here -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
