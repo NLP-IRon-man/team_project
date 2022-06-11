@@ -75,8 +75,8 @@ period_name_list = [period_name.replace("_", " ").replace(
 emotion_name_list = list(
     emotion_data_dict[movie_name][character_name]["period_0"].keys())
 print("..")
-period_name = "period_0"
-emotion_name = "disgust"
+# period_name = "period_0"
+# emotion_name = "disgust"
 graph_data = {}
 period_axis = np.arange(len(period_name_list))
 plt.figure(figsize=(8, 8))

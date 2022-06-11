@@ -10,7 +10,7 @@ from handler.handler_user_db import handler_user_db as user_db_handler
 namespace_account = Namespace('account', 'Api for account')
 
 
-@namespace_account.route('/login')
+@namespace_account.route('/')
 class Login(Resource):
     def post(self):
         if not request.is_json:
