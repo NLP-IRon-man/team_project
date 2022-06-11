@@ -41,19 +41,19 @@ for movie in movies:
             for j in range(i*(length//period_num),(i+1)*length//(period_num) - 1):
                 if (txt_to_list[j]+" ") in disgust_dic:
                     count+=1
-                    if disgust_dic[txt_to_list[j]+" "]>=0.002528:
+                    if disgust_dic[txt_to_list[j]+" "]>=0.007937:
                         tmp[0] += disgust_dic[txt_to_list[j]+" "]
-                    if surprise_dic[txt_to_list[j]+" "]>=0.015640:
+                    if surprise_dic[txt_to_list[j]+" "]>=0.026907:
                         tmp[1] += surprise_dic[txt_to_list[j]+" "]
-                    if neutral_dic[txt_to_list[j]+" "]>=0.000992:
+                    if neutral_dic[txt_to_list[j]+" "]>=0.003968:
                         tmp[2] += neutral_dic[txt_to_list[j]+" "]
-                    if anger_dic[txt_to_list[j]+" "]>= 0.011905:
+                    if anger_dic[txt_to_list[j]+" "]>= 0.023810:
                         tmp[3] += anger_dic[txt_to_list[j]+" "]
-                    if sad_dic[txt_to_list[j]+" "]>=0.011905:
+                    if sad_dic[txt_to_list[j]+" "]>=0.023810:
                         tmp[4] += sad_dic[txt_to_list[j]+" "]
-                    if happy_dic[txt_to_list[j]+" "]>=0.015306:
+                    if happy_dic[txt_to_list[j]+" "]>=0.027778:
                         tmp[5] += happy_dic[txt_to_list[j]+" "]
-                    if fear_dic[txt_to_list[j]+" "]>=0.014286:
+                    if fear_dic[txt_to_list[j]+" "]>=0.026316:
                         tmp[6] += fear_dic[txt_to_list[j]+" "]
             
             period_emotion.append(tmp)

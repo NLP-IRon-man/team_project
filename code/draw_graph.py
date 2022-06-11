@@ -76,7 +76,7 @@ emotion_data_dict = read_emotion_csv("emotion_csv")
 graph_data_dict = convert_emotion_data_dict_to_graph_data_dict(
     emotion_data_dict)
 movies = movie_list("emotion_csv")
-
+"""
 for movie in movies:
     movie_name = movie
     for role in graph_data_dict[movie_name]:
@@ -108,3 +108,35 @@ for movie in movies:
         for period_name in period_name_list:
             for emotion_name in emotion_name_list:
                 print()
+"""
+print()
+print("processing", end="")
+for movie in movies:
+    movie_name = movie
+    for role in graph_data_dict[movie_name]:
+        character_name = role
+        period_name_list = [period_name.replace("_", " ").replace(
+            "p", "P") for period_name in list(emotion_data_dict[movie_name][character_name].keys())]
+        emotion_name_list = list(
+            emotion_data_dict[movie_name][character_name]["period_0"].keys())
+        print("..", end="")
+        percent_dict = {'disgust':[], 'surprise':[], 'neutral':[], 'anger':[],'sad':[],'happy':[],'fear':[]}
+        for i in range(len(period_name_list)):
+            temp_sum = 0
+            for emotion in emotion_name_list:
+                temp_sum+=graph_data_dict[movie_name][character_name][emotion][i]
+            for emotion in emotion_name_list:
+                percent_dict[emotion].append((graph_data_dict[movie_name][character_name][emotion][i]/temp_sum)*100)
+        #graph_data = {}
+        period_axis = np.arange(len(period_name_list))
+        plt.figure(figsize=(8, 8))
+        plt.title(f"{movie_name} - {character_name}")
+        plt.xticks(period_axis, period_name_list)
+        for emotion_idx, emotion_name in enumerate(emotion_name_list):
+            plt.plot(
+                period_axis, percent_dict[emotion_name], label=emotion_name)
+        plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
+        plt.tight_layout()
+        file_name = movie_name + "_" + role+".png"
+        plt.savefig('plot_image/'+file_name)
+#plt.show()
