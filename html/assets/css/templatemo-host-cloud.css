@@ -373,7 +373,7 @@ header {
 	display: inline-block;
 }
 .banner #search-section {
-	position: absolute;
+	position: relative;
 }
 .banner #search-section input.searchText {
 	float: left;
@@ -390,9 +390,6 @@ header {
 	margin-bottom: 30px;
 }
 .banner #search-section input.main-button {
-	position:fixed;
-	top: 385px;
-	right: 380px;
 	outline: none;
 	cursor: pointer;
 	display: inline-block;
