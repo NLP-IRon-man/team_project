@@ -10,6 +10,7 @@ import os
 import copy
 from collections import OrderedDict
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def convert_dict_to_list(dictionary: Dict) -> List:
@@ -48,32 +49,45 @@ def read_emotion_csv(dir_path: str) -> Dict:
     return result_dict
 
 
+def convert_emotion_data_dict_to_graph_data_dict(emotion_data_dict: Dict) -> Dict:
+    graph_data = {}
+    for movie_name, movie_data in emotion_data_dict.items():
+        graph_data[movie_name] = {}
+        for character_name, character_data in movie_data.items():
+            graph_data[movie_name][character_name] = {}
+            for _, period_data in character_data.items():
+                for emotion_name, emotion_data in period_data.items():
+                    if emotion_name not in graph_data[movie_name][character_name]:
+                        graph_data[movie_name][character_name][emotion_name] = []
+                    graph_data[movie_name][character_name][emotion_name].append(
+                        emotion_data)
+    return graph_data
+
+
 emotion_data_dict = read_emotion_csv("./code/emotion_csv")
+graph_data_dict = convert_emotion_data_dict_to_graph_data_dict(
+    emotion_data_dict)
+
 movie_name = "Up"
 character_name = "CARL"
-period_name_list = list(emotion_data_dict[movie_name][character_name].keys())
+period_name_list = [period_name.replace("_", " ").replace(
+    "p", "P") for period_name in list(emotion_data_dict[movie_name][character_name].keys())]
+emotion_name_list = list(
+    emotion_data_dict[movie_name][character_name]["period_0"].keys())
 print("..")
 # period_name = "period_0"
 # emotion_name = "disgust"
-# plt.figure(figsize=(8, 8))
-# plt.title(f"{movie_name} - {character_name}")
-# for period_name in period_name_list:
-
-
-# plt.scatter(x, y, color="blue")
-# plt.axline((0, 0), slope=principal_component_1[1] /
-#            principal_component_1[0], color="red", linestyle="-")
-# plt.scatter(projection1[:, 0], projection1[:, 1], color="green")
-# #
-# # ++++++++++++++++++++++++++++++++++++++++++++++++++
-
-# plt.xlim(min_x - 0.5, max_x + 0.5)
-# plt.ylim(min_y - 0.5, max_y + 0.5)
-
-# plt.tight_layout()
-# plt.show()
-
-# 사용자가 웹 사이트에서 imsdb 대본을 가져와서 해당 영화를 분석하고 싶다.
-# 그 영화 대본 사이트 링크를 가져와서 html 웹 페이지에 입력한다.
-# 서버. 로컬 (127.0.0.1) 콘솔로 해도 된다.
-# 그 사이트에서 데이터를 크롤링해와서 일련의 과정을 수행한 후 결과를 보여준다.
+graph_data = {}
+period_axis = np.arange(len(period_name_list))
+plt.figure(figsize=(8, 8))
+plt.title(f"{movie_name} - {character_name}")
+plt.xticks(period_axis, period_name_list)
+for emotion_idx, emotion_name in enumerate(emotion_name_list):
+    plt.plot(
+        period_axis, graph_data_dict[movie_name][character_name][emotion_name], label=emotion_name)
+plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
+plt.tight_layout()
+plt.show()
+for period_name in period_name_list:
+    for emotion_name in emotion_name_list:
+        print()
