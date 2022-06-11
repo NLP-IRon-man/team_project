@@ -1,30 +1,13 @@
 from flask import Blueprint
 from flask_restx import Api
 
-from namespaces.namespace_beacon import namespace_beacon
-from namespaces.namespace_building import namespace_building
-from namespaces.namespace_sticker import namespace_sticker
-from code.backend.namespaces.namespace_account import namespace_account
-from namespaces.namespace_episode import namespace_episode
-from namespaces.namespace_thumbnail import namespace_thumbnail
+from backend.namespaces.namespace_home import namespace_home
+from backend.namespaces.namespace_movie import namespace_movie
 
-blueprint_user = Blueprint('user', __name__, url_prefix='/user')
-api = Api(blueprint_user)
-api.add_namespace(namespace_account, '/account')
+blueprint_home = Blueprint('user', __name__, url_prefix='/home')
+api = Api(blueprint_home)
+api.add_namespace(namespace_home, '/')
 
-blueprint_beacon = Blueprint('beacon', __name__, url_prefix='/beacon')
-api = Api(blueprint_beacon)
-api.add_namespace(namespace_beacon, '/')
-
-blueprint_building = Blueprint('building', __name__, url_prefix='/building')
-api = Api(blueprint_building)
-api.add_namespace(namespace_building, '/')
-
-blueprint_episode = Blueprint("episode", __name__, url_prefix="/episode")
-api = Api(blueprint_episode)
-api.add_namespace(namespace_episode, "/")
-
-blueprint_image = Blueprint('image', __name__, url_prefix='/image')
-api = Api(blueprint_image)
-api.add_namespace(namespace_thumbnail, "/thumbnail")
-api.add_namespace(namespace_sticker, '/sticker')
+blueprint_movie = Blueprint("movie", __name__, url_prefix="/movie")
+api = Api(blueprint_movie)
+api.add_namespace(namespace_movie, "/")
