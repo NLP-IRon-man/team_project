@@ -41,16 +41,21 @@ for movie in movies:
             for j in range(i*(length//period_num),(i+1)*length//(period_num) - 1):
                 if (txt_to_list[j]+" ") in disgust_dic:
                     count+=1
-                    tmp[0] += disgust_dic[txt_to_list[j]+" "]
-                    tmp[1] += surprise_dic[txt_to_list[j]+" "]
-                    tmp[2] += neutral_dic[txt_to_list[j]+" "]
-                    tmp[3] += anger_dic[txt_to_list[j]+" "]
-                    tmp[4] += sad_dic[txt_to_list[j]+" "]
-                    tmp[5] += happy_dic[txt_to_list[j]+" "]
-                    tmp[6] += fear_dic[txt_to_list[j]+" "]
-            #nparray = np.array(tmp)
-            #nparray = nparray/count
-            #period_emotion.append(nparray) #정규화를 위해서 해본건데 정규화가 아닌거같음 애당초 정규화가 필요한지 의문. 어차피 모든 단어마다 값이 다르니까
+                    if disgust_dic[txt_to_list[j]+" "]>=0.002528:
+                        tmp[0] += disgust_dic[txt_to_list[j]+" "]
+                    if surprise_dic[txt_to_list[j]+" "]>=0.015640:
+                        tmp[1] += surprise_dic[txt_to_list[j]+" "]
+                    if neutral_dic[txt_to_list[j]+" "]>=0.000992:
+                        tmp[2] += neutral_dic[txt_to_list[j]+" "]
+                    if anger_dic[txt_to_list[j]+" "]>= 0.011905:
+                        tmp[3] += anger_dic[txt_to_list[j]+" "]
+                    if sad_dic[txt_to_list[j]+" "]>=0.011905:
+                        tmp[4] += sad_dic[txt_to_list[j]+" "]
+                    if happy_dic[txt_to_list[j]+" "]>=0.015306:
+                        tmp[5] += happy_dic[txt_to_list[j]+" "]
+                    if fear_dic[txt_to_list[j]+" "]>=0.014286:
+                        tmp[6] += fear_dic[txt_to_list[j]+" "]
+            
             period_emotion.append(tmp)
 
     data = {
@@ -77,3 +82,4 @@ for movie in movies:
     df.to_csv(path)
     print(".", end='')
 print()
+
