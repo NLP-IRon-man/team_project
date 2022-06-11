@@ -48,6 +48,13 @@ def read_emotion_csv(dir_path: str) -> Dict:
                     emotion_name_list[emotion_idx]: splitted_by_character[character_idx][emotion_idx] for emotion_idx in range(emotion_number)}
     return result_dict
 
+def movie_list(dir_path: str) -> Dict:
+    file_name_list = os.listdir(dir_path)
+    result = []
+    for item in file_name_list:
+        result.append(item[:-12])
+    return result
+
 
 def convert_emotion_data_dict_to_graph_data_dict(emotion_data_dict: Dict) -> Dict:
     graph_data = {}
@@ -64,30 +71,40 @@ def convert_emotion_data_dict_to_graph_data_dict(emotion_data_dict: Dict) -> Dic
     return graph_data
 
 
-emotion_data_dict = read_emotion_csv("./code/emotion_csv")
+#emotion_data_dict = read_emotion_csv("./code/emotion_csv")
+emotion_data_dict = read_emotion_csv("emotion_csv")
 graph_data_dict = convert_emotion_data_dict_to_graph_data_dict(
     emotion_data_dict)
+movies = movie_list("emotion_csv")
 
-movie_name = "Up"
-character_name = "CARL"
-period_name_list = [period_name.replace("_", " ").replace(
-    "p", "P") for period_name in list(emotion_data_dict[movie_name][character_name].keys())]
-emotion_name_list = list(
-    emotion_data_dict[movie_name][character_name]["period_0"].keys())
-print("..")
-# period_name = "period_0"
-# emotion_name = "disgust"
-graph_data = {}
-period_axis = np.arange(len(period_name_list))
-plt.figure(figsize=(8, 8))
-plt.title(f"{movie_name} - {character_name}")
-plt.xticks(period_axis, period_name_list)
-for emotion_idx, emotion_name in enumerate(emotion_name_list):
-    plt.plot(
-        period_axis, graph_data_dict[movie_name][character_name][emotion_name], label=emotion_name)
-plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
-plt.tight_layout()
-plt.show()
-for period_name in period_name_list:
-    for emotion_name in emotion_name_list:
-        print()
+for movie in movies:
+    movie_name = movie
+    for role in graph_data_dict[movie_name]:
+        character_name = role
+
+#movie_name = "Up"
+#character_name = "CARL"
+        period_name_list = [period_name.replace("_", " ").replace(
+            "p", "P") for period_name in list(emotion_data_dict[movie_name][character_name].keys())]
+        emotion_name_list = list(
+            emotion_data_dict[movie_name][character_name]["period_0"].keys())
+        print("..")
+        # period_name = "period_0"
+        # emotion_name = "disgust"
+        graph_data = {}
+        period_axis = np.arange(len(period_name_list))
+        plt.figure(figsize=(8, 8))
+        plt.title(f"{movie_name} - {character_name}")
+        plt.xticks(period_axis, period_name_list)
+        for emotion_idx, emotion_name in enumerate(emotion_name_list):
+            plt.plot(
+                period_axis, graph_data_dict[movie_name][character_name][emotion_name], label=emotion_name)
+        plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
+        plt.tight_layout()
+        file_name = movie_name + "_" + role+".png"
+        plt.savefig('plot_image/'+file_name)
+#plt.show()
+
+        for period_name in period_name_list:
+            for emotion_name in emotion_name_list:
+                print()
