@@ -9,8 +9,7 @@ import pandas as pd
 import os
 import copy
 
-csv_dir_path = "./code/csv"
-#csv_dir_path = "csv" ##For ByungJun's pc path
+csv_dir_path = "./csv"
 csv_file_name_list = os.listdir(csv_dir_path)
 movie_data_dict = {}
 for csv_file_name in csv_file_name_list:
@@ -59,7 +58,7 @@ def save_data(movie_data_dict: Dict):
         for character, token_list in data.items():
             data[character] = " ".join(token_list)
     for name, data in copied_data_dict.items():
-        csv_path = f"./code/preprocess/{name}_preprocess.csv"
+        csv_path = f"./preprocess/{name}_preprocess.csv"
         DataFrame.from_dict([data]).to_csv(csv_path)
 
 
@@ -68,17 +67,6 @@ def read_data(csv_path: str) -> Dict:
 
 
 process_data(movie_data_dict, tokenize)
-print("\n**After tokenizing")
-# print_movie_data(movie_data_dict)
-
 process_data(movie_data_dict, lemmatize)
-print("\n**After lemmatizing")
-# print_movie_data(movie_data_dict)
-
 process_data(movie_data_dict, remove_stop_words)
-print("\n**After removing stop words")
-# print_movie_data(movie_data_dict)
 save_data(movie_data_dict)
-
-dict = read_data("./code/preprocess/Up_preprocess.csv")
-print("..")
