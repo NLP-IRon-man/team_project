@@ -15,9 +15,9 @@ class GetAllMovieCharacterData(Resource):
             return str(e)
         for character in character_list:
             print(f"character: {character.name}")
-        return render_template("movie.html")
+        return render_template("index.html", movie_name=movie_name)
 
-
+    
 @namespace_movie.route("/<string:movie_name>/<int:character_index>")
 class GetMovieCharacterData(Resource):
     def get(self, movie_name: str, character_index: int):
@@ -25,7 +25,8 @@ class GetMovieCharacterData(Resource):
         try:
             character = character_DB_handler.get_character(movie_name, character_index)
         except Exception as e:
-            return make_response(render_template("index.html", movie_name="joker", character_name="joker"))
+            return make_response(render_template("index.html", movie_name="joker", character_name="joker",
+                                                 graph_path="plot_image/Batman_BATMAN.png"))
             return str(e)
         print(f"character: {character.name}")
-        return render_template("movie_character.html", movie_name="joker", character_name="joker")
+        return render_template("index.html", movie_name="joker", character_name="joker")
