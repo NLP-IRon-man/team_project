@@ -8,18 +8,17 @@
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/pyscript.css"/>
-    <script defer src="path/to/pyscript.js"></script>
 
     <title>IRON-MAN NLP Project</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for("static", filename="vendor/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-host-cloud.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="assests/css/fontawesome.css") }}"/>
+    <link rel="stylesheet" href="{{ url_for("static", filename="assets/css/templatemo-host-cloud.css") }}"/>
+    <link rel="stylesheet" href="{{ url_for("static", filename="assets/css/owl.css") }}"/>
     <!--
 
     Host Cloud Template
@@ -111,8 +110,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-heading">
-                    <span>Result</span>
-                    <h2>{{movie_name|capitalize}} - {{character_name|capitalize}} emotion graph</h2>
+                    <span><h1>{{ movie_name |capitalize }}</h1></span>
+                    <h4>{{ character_name |capitalize }} Emotion Graph</h4>
+                    <img src="{{ url_for("static", filename=graph_path) }}">
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -141,13 +141,13 @@
 
 
 <!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for("static", filename="vendor/jquery/jquery.min.js") }}"></script>
+<script src="{{ url_for("static", filename="vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
 
 <!-- Additional Scripts -->
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/owl.js"></script>
-<script src="assets/js/accordions.js"></script>
+<script src="{{ url_for("static", filename="assets/js/custom.js") }}"></script>
+<script src="{{ url_for("static", filename="assets/js/owl.js") }}"></script>
+<script src="{{ url_for("static", filename="assets/js/accordions.js") }}"></script>
 
 
 <script language="text/Javascript">
