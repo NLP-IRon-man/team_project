@@ -87,11 +87,11 @@ class GraphPlotter:
         print("processing", end="")
         for movie in self.__movie_list:
             movie_name = movie
+            character_index = 0
             try:
                 movie_DB_handler.add_new_movie(Movie(movie_name))
             except Exception:
                 pass
-            character_index = 0
             for role in self.__graph_data_dict[movie_name]:
                 character_name = role
                 period_name_list = [period_name.replace("_", " ").replace(
@@ -117,8 +117,7 @@ class GraphPlotter:
                 most_emotions = []
                 most_values = []
                 emoji_dict = {'happy': "😀", 'fear': "😱", 'disgust': "🤮", 'surprise': "😲", 'neutral': "😐",
-                              'anger': "😡",
-                              'sad': "😭"}
+                              'anger': "😡", 'sad': "😭"}
                 for i in range(len(period_name_list)):
                     max_emotion = ''
                     temp = 0
@@ -129,19 +128,27 @@ class GraphPlotter:
                     most_emotions.append(max_emotion)
                     most_values.append(temp)
 
-                period_axis = np.arange(len(period_name_list))
-                plt.figure(figsize=(8, 8))
-                plt.title(f"{movie_name} - {character_name}")
-                plt.xticks(period_axis, period_name_list)
-                for emotion_idx, emotion_name in enumerate(emotion_name_list):
-                    plt.plot(
-                        period_axis, percent_dict[emotion_name], label=emotion_name)
-                plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
-                plt.tight_layout()
-                for i in range(len(period_name_list)):
-                    plt.text(i - 0.5, most_values[i], most_emotions[i] + emoji_dict[most_emotions[i]], fontsize=12,
-                             color='black', weight='bold')
+                d_list = percent_dict["disgust"]
+                su_list = percent_dict["surprise"]
+                n_list = percent_dict["neutral"]
+                a_list = percent_dict["anger"]
+                sa_list = percent_dict["sad"]
+                h_list = percent_dict["happy"]
+                f_list = percent_dict["fear"]
 
+                df = pd.DataFrame(index=[period_name_list],
+                                  data={
+                                      'disgust': d_list,
+                                      'surprise': su_list,
+                                      'neutral': n_list,
+                                      'anger': a_list,
+                                      'sad': sa_list,
+                                      'happy': h_list,
+                                      'fear': f_list}
+                                  )
+                ax = df.plot(figsize=(8, 8), kind="bar", stacked=True, rot=0)
+                ax.legend(bbox_to_anchor=(0.95, 1.0), loc='upper left')
+                ax.set_title(f"{movie_name} - {character_name}")
                 file_name = movie_name + "_" + role.replace("'", "") + ".png"
                 graph_path = self.__output_graph_base_path + file_name
                 plt.savefig(graph_path)
