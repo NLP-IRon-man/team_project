@@ -129,7 +129,10 @@ for movie in movies:
             for emotion in emotion_name_list:
                 temp_sum+=graph_data_dict[movie_name][character_name][emotion][i]
             for emotion in emotion_name_list:
-                percent_dict[emotion].append((graph_data_dict[movie_name][character_name][emotion][i]/temp_sum)*100)
+                if graph_data_dict[movie_name][character_name][emotion][i]==0:
+                    percent_dict[emotion].append(0)
+                else:
+                    percent_dict[emotion].append((graph_data_dict[movie_name][character_name][emotion][i]/temp_sum)*100)
         
         ##most emotion
         most_emotions = []
