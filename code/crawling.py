@@ -113,7 +113,7 @@ def main():
    # 영화 제목을 스트링으로 넣어주세요.
    # 현재 장르 필요 없어져서 장르 파라미터 제거
    # 영화 제목만 넣어주심 됩니다.
-   make_script_url("Lost in Translation")
+   make_script_url("Gladiator")
 
 
 if __name__ == "__main__":
