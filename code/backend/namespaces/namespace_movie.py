@@ -1,32 +1,23 @@
 from flask import render_template, make_response
 from flask_restx import Resource, Namespace, reqparse
 
-from backend.handler.character_DB_handler import character_DB_handler
+from DB_handler.character_DB_handler import character_DB_handler
+from DB_handler.movie_DB_handler import movie_DB_handler
 
 namespace_movie = Namespace('movie', 'Api for movie')
 
 
-@namespace_movie.route('/<string:movie_name>/all')
-class GetAllMovieCharacterData(Resource):
-    def get(self, movie_name: str):
+@namespace_movie.route('/')
+class GetAllCharacterData(Resource):
+    def get(self):
+        from flask import request
+        movie_name = request.args.get("movie").replace(" ", "-")
+        headers = {'Content-Type': 'text/html'}
         try:
+            movie_list = movie_DB_handler.get_all_movies()
             character_list = character_DB_handler.get_all_characters(movie_name)
         except Exception as e:
             return str(e)
-        for character in character_list:
-            print(f"character: {character.name}")
-        return render_template("index.html", movie_name=movie_name)
-
-    
-@namespace_movie.route("/<string:movie_name>/<int:character_index>")
-class GetMovieCharacterData(Resource):
-    def get(self, movie_name: str, character_index: int):
-        headers = {"Content-Type": "text/html"}
-        try:
-            character = character_DB_handler.get_character(movie_name, character_index)
-        except Exception as e:
-            return make_response(render_template("index.html", movie_name="joker", character_name="joker",
-                                                 graph_path="plot_image/Batman_BATMAN.png"))
-            return str(e)
-        print(f"character: {character.name}")
-        return render_template("index.html", movie_name="joker", character_name="joker")
+        return make_response(
+            render_template("movie.html", movie_name_list=[movie.name.replace("-", " ") for movie in movie_list],
+                            movie_name=movie_name.replace("-", " "), character_list=character_list))

@@ -1,5 +1,5 @@
 from flask import Flask
-from blueprints.blueprints import blueprint_home, blueprint_movie
+from backend.blueprints.blueprints import blueprint_home, blueprint_movie
 
 app = Flask(__name__)
 app.register_blueprint(blueprint_home)

@@ -282,4 +282,4 @@ cython_debug/
 
 /code/movie_scripts
 
-**/secure
+code/backend/secure
