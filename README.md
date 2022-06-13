@@ -3,14 +3,14 @@ Team 7 IRon man
 
 ## Main idea
 
-Show each character’s emotional change using graph.
+Draw the graph showing change in each character’s emotion.
 
 <img src="https://user-images.githubusercontent.com/48765232/173276457-a20f386e-8f26-452d-a524-19215b44159e.png" alt="Joker" width="40%" heigh="40%" />
 
-1. Crawling the scripts and divide scripts by characters, and find 5 main characters.
-2. Analyze the movie scripts divided into 5 parts.
-3. Analyze 7 emotions(disgust, surprise, neutral, anger, sad, happy, fear) changing from start to end of the movie
-4. Users can search movies and see what they want.
+1. Crawl the scripts and divide scripts by characters, and find 5 main characters.
+2. Analyze the movie scripts and divide each script into 5 parts. (Period 0, Period 1, Period 2, Period 3, Period 4)
+3. Analyze emotion (disgust, surprise, neutral, anger, sad, happy, fear). Each character's emotion is changing from start to end of the movie
+4. Users can see graph showing change in each character's emotion.
 
 
 <img alt="Main-Idea" src="https://user-images.githubusercontent.com/48765232/173276908-046c7f71-85be-4d2e-ae91-7477c8a617fb.png" width="70%" heigh="70%"/>
@@ -19,14 +19,14 @@ Show each character’s emotional change using graph.
 
 <img alt="architecture" src="https://user-images.githubusercontent.com/48765232/173277242-63781af0-5bc4-4317-b013-76fbf615c3ea.png" width="70%" heigh="70%"/>
 
-1. Crawl movie scripts from IMSDB. While crawling, divide the script person by person using an HTML tag.
+1. Crawl movie scripts from IMSDB. Divide the script person by person using an HTML tag.
 2. Figure 5 main characters from each movie. As we mentioned last presentations, we used 3 scores to figure main characters.
     1. Someone who talks much. 
     2. Someone who talks frequently. 
     3. Someone who is mentioned by other characters many times.
-3. Preprocess script by removing stop words.
-4. Analyze emotions using the word-emotion dataset. Some work on datasets like normalization. Divide the movie into 5 periods for each character.
-5. Draw an emotional change chart for 5 characters and save images to the database
+3. Preprocess script (removing stop words).
+4. Analyze emotions using the word-emotion dataset. We use normalization. Divide the movie into 5 periods for each character.
+5. Draw an graph showing change in emotion for 5 characters and save images to the database
 
 
 ## Example
@@ -53,11 +53,11 @@ Show each character’s emotional change using graph.
   
 ## Evaluation
 
-Not easy to evaluate our program.
-1. Emotion is personal area
-2. It’s hard to apply existed test set which has [text : emotion] format because our data text is much longer, and we want to analyze 7 emotions, not one emotion.
+It is not easy to evaluate our program.
+1. Emotion is difficult to assess quantitatively.
+2. It’s hard to apply test data that already exists which has [text : emotion] format. Because movie script text is long and we want to analyze 7 emotions, not one emotion.
 
-So we decided to select some popular movies and evaluate them.
+So we decided to select some popular movies and evaluate our program using these data.
 If most people agree with the result, it seems successful.
 
 
