@@ -3,7 +3,7 @@ Team 7 IRon man
 
 ## Main idea
 
-Show each character’s emotional change graph.
+Show each character’s emotional change using graph.
 
 <img src="https://user-images.githubusercontent.com/48765232/173276457-a20f386e-8f26-452d-a524-19215b44159e.png" alt="Joker" width="40%" heigh="40%" />
 
@@ -35,9 +35,7 @@ Show each character’s emotional change graph.
 
   Joker(2019)
   
-  <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" alt="Movie" width="30%" height="30%" /> 
-  
-  <img src="https://user-images.githubusercontent.com/48765232/173278265-1c003a14-d420-47ab-b40a-7bdb8aeca4fc.png" alt="WebPage" width="80%" height="80%" /> 
+  <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" alt="Movie" width="30%" height="30%" />  
 
 
 - #### Output:
@@ -50,7 +48,7 @@ Show each character’s emotional change graph.
   
   Cast Away(2000)
   
-  <img src="https://user-images.githubusercontent.com/48765232/173277124-ad3cda48-81b3-4ec6-926f-7bbea996fc36.png" alt="castaway" width="40%" heigh="40%" />
+  <img src="https://user-images.githubusercontent.com/48765232/173277124-ad3cda48-81b3-4ec6-926f-7bbea996fc36.png" alt="castaway" width="40%" heigh="40%" /> 
   
   
 ## Evaluation
